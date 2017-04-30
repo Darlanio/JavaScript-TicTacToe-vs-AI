@@ -3,13 +3,13 @@
 <!-- config.xml reference: https://build.phonegap.com/docs/config-xml -->
 <widget xmlns     = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
-        id        = "com.phonegap.tictactoe"
+        id        = "com.phonegap.tictactoevsai"
         version   = "1.0.0">
 
-    <name>Tic Tac Toe</name>
+    <name>Tic Tac Toe vs AI</name>
 
     <description>
-        This is a classic game! Only Player vs Player available for now...
+        This is a classic game! Only Player vs AI in this app, but there is a version for Player vs Player...
     </description>
 
     <author href="http://www.google.com/" email="darlanio@gmail.com">
