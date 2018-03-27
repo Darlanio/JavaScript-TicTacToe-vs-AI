@@ -2417,6 +2417,7 @@ function ClearBoard()
     pickedup=-1;
     board = [ 0,0,0,0,0,0,0,0,0 ];
 	movenumber=0;
+	won = [ -1,-1,-1 ];
 }
 
 // Helpers
