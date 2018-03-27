@@ -2589,7 +2589,7 @@ function AIMakeMove()
                book[i].p[8]==board[8] &&
                book[i].p[9]==board[9]) {
                 var j=0;
-				if(movecounter>20) {					
+				if(movenumber>20) {					
 					while((Math.random() < (movenumber/200)) && (j<15) && (book[i].m[j+3]!=-1))					
 					{
 						j+=2;
@@ -2607,7 +2607,8 @@ function AIMakeMove()
                     red++;
                 } else {
                     TurnBlue(ids[book[i].m[j+1]]);
-                    blue++;            }
+                    blue++;            
+				}
                 tomove++;
                 if(tomove==3) tomove=1;
                 i=book.length;
