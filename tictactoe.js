@@ -8,6 +8,8 @@ var red;
 var blue;
 var won = [ -1,-1,-1 ];
 var ids = [ 'A1', 'A2', 'A3', 'B1', 'B2', 'B3', 'C1', 'C2', 'C3' ];
+var movenumber;
+var flashcounter=0;
 
 var book = [
     {p:[0,0,0,0,0,0,0,0,0],m:[-1,4,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]},
@@ -2414,10 +2416,10 @@ function ClearBoard()
     blue=0;
     pickedup=-1;
     board = [ 0,0,0,0,0,0,0,0,0 ];
+	movenumber=0;
 }
 
 // Helpers
-
 function FlashWinningOn()
 {
     if(board[won[0]]==1) {
@@ -2429,7 +2431,14 @@ function FlashWinningOn()
         TurnBlue(ids[won[1]]);
         TurnBlue(ids[won[2]]);
     }
-    window.setTimeout(FlashWinningOff,100);
+	flashcounter--;
+	if(flashcounter>0) {
+		window.setTimeout(FlashWinningOff,100);
+	} else {
+		ClearBoard();
+		thinking=1;
+		AIMakeMove();
+	}	
 }
 
 function FlashWinningOff()
@@ -2454,6 +2463,7 @@ function CheckWinning()
       if(board[2]>0 && board[2]==board[4] && board[4]==board[6]) won=[2,4,6];
       if(won[0]>-1) {
           thinking=2;
+		  flashcounter=50;
           FlashWinningOn();
       }
    }
@@ -2515,6 +2525,7 @@ function PlayerClick(id,index)
         }
     }
     CheckWinning();
+	movenumber++;
 }
 
 function ButtonA1()
@@ -2578,10 +2589,12 @@ function AIMakeMove()
                book[i].p[8]==board[8] &&
                book[i].p[9]==board[9]) {
                 var j=0;
-                while((Math.random() < 0.2) && (j<15) && (book[i].m[j+3]!=-1))
-                {
-                  j+=2;
-                }
+				if(movecounter>20) {					
+					while((Math.random() < (movenumber/200)) && (j<15) && (book[i].m[j+3]!=-1))					
+					{
+						j+=2;
+					}
+				}
                 if(book[i].m[j]==-1) {
                     board[book[i].m[j+1]]=tomove;
                 } else {
